@@ -10,7 +10,7 @@ from collections import OrderedDict
 from functools import wraps
 from txrestapi.resource import APIResource
 from txrestapi.methods import GET, POST, DELETE
-from twisted.web import server
+from twisted.web import server, static
 from twisted.web.resource import NoResource
 from twisted.web import http
 from twisted.web.server import Site
@@ -1388,12 +1388,14 @@ class OpenBazaarAPI(APIResource):
 class RestAPI(Site):
 
     def __init__(self, mserver, kserver, openbazaar_protocol, username, password,
-                 authenticated_sessions, only_ip=None, timeout=60 * 60 * 1):
+                 authenticated_sessions, only_ip=None, timeout=60 * 60 * 1, client_dir=None):
         if only_ip == None:
             only_ip = ["127.0.0.1"]
         self.only_ip = only_ip
         api_resource = OpenBazaarAPI(mserver, kserver, openbazaar_protocol,
                                      username, password, authenticated_sessions)
+        if client_dir != None:
+            api_resource.putChild(client_dir, static.File('./' + client_dir))
         Site.__init__(self, api_resource, timeout=timeout)
 
     def buildProtocol(self, addr):

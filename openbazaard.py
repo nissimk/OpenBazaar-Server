@@ -10,7 +10,7 @@ import time
 from api.ws import WSFactory, AuthenticatedWebSocketProtocol, AuthenticatedWebSocketFactory
 from api.restapi import RestAPI
 from config import DATA_FOLDER, KSIZE, ALPHA, LIBBITCOIN_SERVERS,\
-    LIBBITCOIN_SERVERS_TESTNET, SSL_KEY, SSL_CERT, SEEDS, SSL
+    LIBBITCOIN_SERVERS_TESTNET, SSL_KEY, SSL_CERT, SEEDS, SSL, CLIENT_DIR
 from daemon import Daemon
 from db.datastore import Database
 from dht.network import Server
@@ -128,7 +128,7 @@ def run(*args):
 
         # rest api
         rest_api = RestAPI(mserver, kserver, protocol, username, password,
-                           authenticated_sessions, only_ip=ALLOWIP)
+                           authenticated_sessions, only_ip=ALLOWIP, client_dir=CLIENT_DIR)
         if SSL:
             reactor.listenSSL(RESTPORT, rest_api,
                               ChainedOpenSSLContextFactory(SSL_KEY, SSL_CERT), interface=interface)

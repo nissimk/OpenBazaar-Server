@@ -36,6 +36,7 @@ DEFAULTS = {
     'username': None,
     'password': None,
     'seed': 'seed.openbazaar.org:8080,5b44be5c18ced1bc9400fe5e79c8ab90204f06bebacc04dd9c70a95eaca6e117',
+    'client_dir': None,
 }
 
 
@@ -171,6 +172,7 @@ PASSWORD = cfg.get('AUTHENTICATION', 'PASSWORD')
 LIBBITCOIN_SERVERS = []
 LIBBITCOIN_SERVERS_TESTNET = []
 SEEDS = []
+CLIENT_DIR = cfg.get('CLIENT','CLIENT_DIR')
 
 items = cfg.items('SEEDS')  # this also includes items in DEFAULTS
 for item in items:
