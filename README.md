@@ -15,6 +15,9 @@ pip install -r requirements.txt
 
 Depending on your system configuration you may need to install some additional dependencies. You can find more detailed, OS specific, instructions [here](https://slack-files.com/T02FPGBKB-F0KJU1CLX-cbbcf8a02c).
 
+If you want to serve the web based client, the repo has a symlink to ../OpenBazaarClient/build.
+Change this to the correct client build folder if it's in another location.
+
 ## Usage
 
 ```bash
